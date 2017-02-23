@@ -1,5 +1,5 @@
 <?php
-include "schedule-backend.php"
+include "schedule-backend-student.php"
 ?>
 
 <style>
@@ -199,11 +199,6 @@ include "schedule-backend.php"
             </td>
             <td>
                 <input type="text" name="sunday-8" value="" \>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="7">
-                <input type="submit" name="submit-schedule" value="Submit"\>
             </td>
         </tr>
     </table>

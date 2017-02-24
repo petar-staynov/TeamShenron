@@ -38,25 +38,25 @@ $schedule = [['пон-1', 'пон-2', 'пон-3', '', '', '', '', ''],
 
 
 <?php
-if(isset($_GET['submit-schedule']) && $userLevel <= 3){
-    $schedule = [[$_GET['mon-0'], $_GET['mon-1'], $_GET['mon-2'], $_GET['mon-3'], $_GET['mon-4'], $_GET['mon-5'], $_GET['mon-6'], $_GET['mon-7']],
-        [$_GET['tue-0'], $_GET['tue-1'], $_GET['tue-2'], $_GET['tue-3'], $_GET['tue-4'], $_GET['tue-5'], $_GET['tue-6'], $_GET['tue-7']],
-        [$_GET['wed-0'], $_GET['wed-1'], $_GET['wed-2'], $_GET['wed-3'], $_GET['wed-4'], $_GET['wed-5'], $_GET['wed-6'], $_GET['wed-7']],
-        [$_GET['thu-0'], $_GET['thu-1'], $_GET['thu-2'], $_GET['thu-3'], $_GET['thu-4'], $_GET['thu-5'], $_GET['thu-6'], $_GET['thu-7']],
-        [$_GET['fri-0'], $_GET['fri-1'], $_GET['fri-2'], $_GET['fri-3'], $_GET['fri-4'], $_GET['fri-5'], $_GET['fri-6'], $_GET['fri-7']],
-        [$_GET['sat-0'], $_GET['sat-1'], $_GET['sat-2'], $_GET['sat-3'], $_GET['sat-4'], $_GET['sat-5'], $_GET['sat-6'], $_GET['sat-7']],
-        [$_GET['sun-0'], $_GET['sun-1'], $_GET['sun-2'], $_GET['sun-3'], $_GET['sun-4'], $_GET['sun-5'], $_GET['sun-6'], $_GET['sun-7']],];
+if(isset($_POST['submit-schedule']) && $userLevel <= 3){
+    $schedule = [[$_POST['mon-0'], $_POST['mon-1'], $_POST['mon-2'], $_POST['mon-3'], $_POST['mon-4'], $_POST['mon-5'], $_POST['mon-6'], $_POST['mon-7']],
+        [$_POST['tue-0'], $_POST['tue-1'], $_POST['tue-2'], $_POST['tue-3'], $_POST['tue-4'], $_POST['tue-5'], $_POST['tue-6'], $_POST['tue-7']],
+        [$_POST['wed-0'], $_POST['wed-1'], $_POST['wed-2'], $_POST['wed-3'], $_POST['wed-4'], $_POST['wed-5'], $_POST['wed-6'], $_POST['wed-7']],
+        [$_POST['thu-0'], $_POST['thu-1'], $_POST['thu-2'], $_POST['thu-3'], $_POST['thu-4'], $_POST['thu-5'], $_POST['thu-6'], $_POST['thu-7']],
+        [$_POST['fri-0'], $_POST['fri-1'], $_POST['fri-2'], $_POST['fri-3'], $_POST['fri-4'], $_POST['fri-5'], $_POST['fri-6'], $_POST['fri-7']],
+        [$_POST['sat-0'], $_POST['sat-1'], $_POST['sat-2'], $_POST['sat-3'], $_POST['sat-4'], $_POST['sat-5'], $_POST['sat-6'], $_POST['sat-7']],
+        [$_POST['sun-0'], $_POST['sun-1'], $_POST['sun-2'], $_POST['sun-3'], $_POST['sun-4'], $_POST['sun-5'], $_POST['sun-6'], $_POST['sun-7']],];
 }
 ?>
 <?php
-if(isset($_GET['permissions'])){
+if(isset($_POST['permissions'])){
     $userLevel++;
 }
 ?>
 
 
 <div class="schedule-table">
-<?php if ($userLevel <= 3) { echo "<form method='get'>"; } ?>
+<?php if ($userLevel <= 3) { echo "<form method='post'>"; } ?>
     <table border="thick">
         <tr>
             <th colspan='7'><?php echo "$school $class$classLetter"?></th>
@@ -84,7 +84,7 @@ if(isset($_GET['permissions'])){
     </table>
 <?php if ($userLevel <= 3) { echo "</form>"; } ?>
 
-    <form method="get">
+    <form method="post">
         <input type="submit" name="permissions" value="Become a Student">
     </form>
 

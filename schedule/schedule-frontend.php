@@ -7,7 +7,7 @@ include "schedule-backend.php"
         width: 100%;
     }
 </style>
-
+<body>
 <form method="GET">
     <table border="thick">
         <tr><th colspan="7">insert School-Class-ClassLetter here</th></tr>
@@ -208,3 +208,4 @@ include "schedule-backend.php"
         </tr>
     </table>
 </form>
+</body>

@@ -1,9 +1,10 @@
+<?php
 //TODO Pull schedule from database on page load
 //TODO Push new schedule to database on submit
 //TODO make PHP print the table???
 //TODO check user permissions and show schedule for students or for teachers/principals
 
-<?php
+
 if(isset($_GET["submit-schedule"])){
     if(isset($_GET['monday-1'])){
         $monday1 = $_GET['monday-1'];

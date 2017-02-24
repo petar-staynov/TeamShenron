@@ -1,5 +1,5 @@
 <?php
-include "schedule-backend.php"
+include "schedule-backend-deprecated.php"
 ?>
 
 <style>

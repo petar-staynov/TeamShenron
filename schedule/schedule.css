@@ -1,0 +1,22 @@
+.schedule-table {
+    display: block;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: 5%;
+    text-align: center;
+}
+.schedule-table table{
+    width: 100%;
+}
+.schedule-table th{
+    font-size: large;
+}
+
+.schedule-table td{
+    font-size: large;
+    text-align: left;
+    width: 10%;
+}
+.schedule-table input {
+    width: 100%;
+}

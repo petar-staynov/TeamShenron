@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 22, 2017 at 11:11 PM
+-- Generation Time: Feb 25, 2017 at 10:51 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -19,6 +19,42 @@ SET time_zone = "+00:00";
 --
 -- Database: `schoolsdb`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `classes`
+--
+
+CREATE TABLE `classes` (
+  `id` int(11) NOT NULL,
+  `class_name` varchar(255) NOT NULL,
+  `associated_school_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `grades`
+--
+
+CREATE TABLE `grades` (
+  `id` int(11) NOT NULL,
+  `associated_user_id` int(11) NOT NULL,
+  `grade` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `schedules`
+--
+
+CREATE TABLE `schedules` (
+  `id` int(11) NOT NULL,
+  `associated_class_id` int(11) NOT NULL,
+  `schedule` text CHARACTER SET utf8 COLLATE utf8_unicode_520_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -4586,6 +4622,86 @@ INSERT INTO `schools` (`id`, `name`, `type`, `city`, `region`, `finance`) VALUES
 (4536, 'ПГ по МСС \"Ернесто Че Гевара\"', 'професионална гимназия', 'Бояново', 'Ямбол', 'Общинско'),
 (4537, 'НГПИ \"Проф. Венко Колев\"', 'по изкуствата', 'Троян', 'Ловеч', 'Държавно');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `registration_date` datetime NOT NULL,
+  `permissions` int(1) NOT NULL DEFAULT '4',
+  `email` varchar(255) NOT NULL,
+  `email_activation` enum('0','1') NOT NULL DEFAULT '0',
+  `associated_school_id` int(11) NOT NULL,
+  `associated_class_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `password`, `registration_date`, `permissions`, `email`, `email_activation`, `associated_school_id`, `associated_class_id`) VALUES
+(1, 'admin', '*4ACFE3202A5FF5CF467898FC58AAB1D615029441', '2017-02-24 00:00:00', 1, 'password=admin', '1', 0, 0),
+(2, 'principal', '*A4B6157319038724E3560894F7F932C8886EBFCF', '2017-02-24 00:00:00', 2, 'password=1234', '1', 0, 0),
+(3, 'teacher', '*A4B6157319038724E3560894F7F932C8886EBFCF', '2017-02-24 00:00:00', 3, 'password=1234', '1', 0, 0),
+(4, 'student', '*A4B6157319038724E3560894F7F932C8886EBFCF', '2017-02-24 00:00:00', 4, 'password=1234', '1', 0, 0);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `classes`
+--
+ALTER TABLE `classes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `grades`
+--
+ALTER TABLE `grades`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `schedules`
+--
+ALTER TABLE `schedules`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `classes`
+--
+ALTER TABLE `classes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `grades`
+--
+ALTER TABLE `grades`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `schedules`
+--
+ALTER TABLE `schedules`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -2,6 +2,7 @@
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="schedule.css">
 
+
 <script src="../profile/js/jquery-3.1.1.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../profile/css/semantic.min.css">
 <script src="../profile/js/semantic.min.js"></script>
@@ -57,16 +58,19 @@ if(isset($_POST['permissions'])){
 
 <div class="schedule-table">
 <?php if ($userLevel <= 3) { echo "<form method='post'>"; } ?>
-    <table border="thick">
+    <table>
         <tr>
-            <th colspan='7'><?php echo "$school $class$classLetter"?></th>
+            <th colspan="8"><?php echo "$school $class$classLetter"?></th>
         </tr>
-        <?php for ($day = 0; $day < count($days); $day++) {
+        <?php echo "<th class='schedule-day-num'> </th>"; ?>
+        <?php for ($day = 0; $day < count($days); $day++) { //Days of week heading row loop
             echo "<th>$days[$day]</th>";
         } ?>
-        <?php for ($row = 0; $row < 8; $row++) {
+        <?php for ($row = 0; $row < 8; $row++) { //ROW LOOP
             echo "<tr id='schedule-row-$row'>";
-                for ($col = 0; $col < 7; $col++) {
+            $rowNum = $row+1;
+            echo "<td class='schedule-day-num'>$rowNum</td>";
+                for ($col = 0; $col < 7; $col++) { //COL LOOP
                     $name = $daysEn[$col] . "-" . $row;
                     if ($userLevel == 4) {
                     echo "<td name='$name'>" . $schedule[$col][$row] . "</td>";
@@ -77,7 +81,7 @@ if(isset($_POST['permissions'])){
                 }
             echo "</tr>"; }  ?>
         <?php if ($userLevel <= 3) {
-            echo "<tr> <td colspan='7'>";
+            echo "<tr> <td colspan='8'>";
             echo "<input type='submit' name='submit-schedule' value='Submit'>";
             echo "</td> </tr>";
         } ?>

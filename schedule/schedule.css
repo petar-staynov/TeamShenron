@@ -39,5 +39,16 @@
     text-align: left;
 }
 .schedule-table input {
-    width: 100%;
+     width: 100%;
+ }
+
+.schedule-table input[type=submit] {
+    color: #FFFFFF;
+    background: #93D5AA;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+}
+.schedule-table input[type=submit]:hover {
+    background: #80d69d;
+    text-decoration: none;
 }

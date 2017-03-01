@@ -2,17 +2,17 @@
 <meta charset="utf-8">
 
 <!-- Jquery -->
-<script src="/shenron/assets/js/jquery-3.1.1.min.js"></script>
+<script src="assets/js/jquery-3.1.1.min.js"></script>
 
 <!-- Semantic UI -->
-<link rel="stylesheet" type="text/css" href="/shenron/assets/css/semantic.min.css">
-<script src="/shenron/assets/js/semantic.min.js"></script>
+<link rel="stylesheet" type="text/css" href="assets/css/semantic.min.css">
+<script src="assets/js/semantic.min.js"></script>
 
 <!-- Custom css -->
-<link rel="stylesheet" type="text/css" href="/shenron/assets/css/style.css">
+<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
 <!-- Animate CSS -->
-<link rel="stylesheet" type="text/css" href="/shenron/assets/css/animate.css">
+<link rel="stylesheet" type="text/css" href="assets/css/animate.css">
 
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">

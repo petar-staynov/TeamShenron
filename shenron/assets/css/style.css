@@ -1,0 +1,123 @@
+* {
+	margin: 0;
+	padding: 0;
+	font-family: 'Roboto', sans-serif;
+}
+/*ALEKS */
+.error {
+	color:red;
+}
+
+a:hover {
+ cursor:pointer;
+}
+
+body, html, #wrapper {
+    width: 100%;
+    height: 100%
+}
+
+.top {
+	background : url('../images/back.jpg') center center fixed no-repeat;
+	background-position: cover;
+	-webkit-position:cover;
+	-o-position:cover;
+	-moz-position:cover;
+	height:100vh;
+}
+
+#wrapper {
+    display: table
+}
+#main {
+    display: table-cell;
+    vertical-align: middle;
+    text-align:center
+}
+
+.front-title {
+	color:white;
+	font-size:3em;
+}
+
+form {
+	display:block;
+	margin:0 auto;
+	width:30%;
+	padding:2%;
+}
+
+/* END ALEKS */
+
+.sidebar {
+	background: #93D5AA !important;
+}
+.sidebar .profile_img {
+	margin: 0 auto;
+}
+.sidebar .profile_name {
+	font-size: 16px;
+}
+.sidebar .profile_info {
+	margin-top: 20px;
+	text-align: center;
+}
+.sidebar .profile_info span {
+    color: #6199A0;
+}
+.sidebar .profile_info h3 {
+	margin-top: 0;
+}
+.sidebar a.item:first-child {
+	border-top: 1px solid rgba(97, 153, 160, 0.5) !important;
+}
+.sidebar a.item {
+	font-size: 16px;
+	border-bottom: 1px solid rgba(97, 153, 160, 0.5);
+	transition: background 0.7s, font-size 0.25s ease !important;
+}
+.sidebar a.item:hover {
+	background: #6199A0 !important;
+	font-size: 18px !important;
+}
+header .menu{
+	background: #6199A0 !important;
+}
+.ui.menu .item:before {
+	position: absolute;
+    content: '';
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 1px;
+    background: #93D5AA;
+}
+header .profile_name {
+	padding: 5px 10px 5px 15px;
+	color: white;
+}
+header .dropdown .menu .item {
+	color: white !important;
+}
+header .header_signout {
+	color: white !important;
+}
+header .right a.item {
+	font-size: 20px;
+	position: relative;
+}
+header .right a.item .notification {
+	position: absolute;
+    background-color: #93D5AA;
+    text-align: center;
+    border-radius: 50%;
+    min-width: 18px;
+    padding: 0 4px;
+    height: 18px;
+    font-size: 14px;
+    color: #FFFFFF;
+    font-weight: bold;
+    line-height: 18px;
+    top: 14px;
+    right: 18px;
+}

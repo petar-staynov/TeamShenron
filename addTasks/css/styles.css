@@ -68,6 +68,8 @@ body {
 
 .ccformfield {
     font-family: 'Lato',Arial,sans-serif;
+    border-radius: 20px;
+    outline: none;
 }
 .ccbtn{
     display:block;
@@ -131,7 +133,7 @@ body {
     width: 268px;
 }
 
-/* -------------------- Rounded Corners */
+ -------------------- Rounded Corners
 .rounded {
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
@@ -168,4 +170,9 @@ select{
     border-radius: 9px 9px 9px 9px;
     box-shadow: 1px 1px 11px #330033;
     background: #58B14C url("http://i62.tinypic.com/15xvbd5.png") no-repeat scroll 170px center;
+}
+span{
+    color: #59b74d;
+    margin: 2px;
+    border-radius: 25px;
 }

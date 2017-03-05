@@ -19,10 +19,10 @@ body, html, #wrapper {
 
 .top {
 	background : url('../images/back.jpg') center center fixed no-repeat;
-	background-position: cover;
-	-webkit-position:cover;
-	-o-position:cover;
-	-moz-position:cover;
+	background-size: cover;
+	-webkit-size:cover;
+	-o-size:cover;
+	-moz-size:cover;
 	height:100vh;
 }
 

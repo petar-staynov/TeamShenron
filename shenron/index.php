@@ -13,12 +13,10 @@
 				<h2 class="second-front-title"></h2>
 				<div class="ui one column stackable center aligned page grid">
 					<div class="column twelve wide">
-						<a class="ui  button" tabindex="0">
-							Разбери повече
-						</a>
-            
             <a class="ui positive button" onclick="modal_eval()" tabindex="0">Вход</a>
-            
+            <a href="#" onclick="modal_text()" class="ui  button" tabindex="0">
+              Регистрирай се
+            </a>
           </div>
         </div>
       </div>
@@ -42,11 +40,6 @@
         <input type="submit" class="ui inverted green button" name="submit" value="Вход">
       </div>
     </form>
-  </div>
-  <div class="actions">
-    <div class="ui black deny button">
-      Затвори
-    </div>
   </div>
   <!-- END LOGIN -->
 
@@ -83,11 +76,6 @@
         <input type="submit" name="submit" class="ui inverted green button" value="Регистрирай се">
       </div>
     </form>
-  </div>
-  <div class="actions">
-    <div class="ui black deny button">
-      Затвори
-    </div>
   </div>
   <!-- END REGISTER -->
 </body>

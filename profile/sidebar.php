@@ -9,6 +9,10 @@
 			</div>
 	</li>
 	<div class="ui divider"></div>
+	<a href="classmates.php" class="item">
+  		<i class="users icon"></i>
+  		Съученици
+	</a>
 	<a class="item">
   		<i class="calendar icon"></i>
   		Календар

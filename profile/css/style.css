@@ -34,6 +34,13 @@
 	background: #6199A0 !important;
 	font-size: 18px !important;
 }
+.sidebar a.item .icon {
+	color: #6199A0;
+	transition: color 0.7s !important;
+}
+.sidebar a.item:hover .icon {
+	color: white;
+}
 header .menu{
 	background: #6199A0 !important;
 }
@@ -56,11 +63,40 @@ header .dropdown .menu .item {
 header .header_signout {
 	color: white !important;
 }
-header .right a.item {
+header .right a.item, header .right li.item, header .right div.item {
 	font-size: 20px;
-	position: relative;
+	cursor: pointer;
+	transition: background 0.3s;
 }
-header .right a.item .notification {
+header .right a.item:hover, header .right li.item:hover, header .right div.item:hover {
+	background: #508991 !important;
+}
+.ui.menu .ui.dropdown .menu>.item {
+	color: white !important;
+	font-size: 16px !important;
+	transition: font-size 0.3s !important;
+}
+.ui.menu .ui.dropdown .menu>.item:hover {
+	color: white !important;
+	font-size: 18px !important;
+}
+.ui.menu .ui.dropdown .menu>.active.item {
+	color: white !important;
+}
+.notification-dropdown {
+	position: absolute;
+	top: 70px;
+	left: 0;
+	background: #6199A0; 
+}
+.notification-dropdown ul {
+	list-style-type: none;
+}
+.notification-dropdown ul li {
+	padding: 5px 10px;
+	color: white;
+}
+header .right .notification {
 	position: absolute;
     background-color: #93D5AA;
     text-align: center;
@@ -74,4 +110,40 @@ header .right a.item .notification {
     line-height: 18px;
     top: 14px;
     right: 18px;
+}
+.profile-holder {
+	border-right: 5px solid #6199A0;
+}
+.profile-image-holder {
+	margin-bottom: 20px;
+}
+.profile-info {
+	color: #6199A0;
+	text-align: center;
+}
+.profile-info h2 {
+	margin: 0;
+}
+.user-grade h2 {
+	color: #6199A0;
+	transition: font-size 0.3s, padding 0.3s;
+}
+.user-grade h2:hover {
+	padding: 6px 0;
+	font-size: 28px;
+}
+.text-center {
+	text-align: center !important;
+}
+.delay-2 {
+	animation-delay: 0.2s;
+}
+.delay-3 {
+	animation-delay: 0.4s;
+}
+.delay-3 {
+	animation-delay: 0.6s;
+}
+.delay-4 {
+	animation-delay: 0.8s;
 }

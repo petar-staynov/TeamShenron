@@ -6,7 +6,7 @@ body{
     padding: 1em;
     text-align: center;
 }
-legend{
+legend.title{
     text-align: center;
     margin: 0 auto;
     color: #59b74d;
@@ -33,15 +33,10 @@ legend{
     margin-bottom: 8px;
 }
 .form-style-5 input[type="text"],
-.form-style-5 input[type="date"],
-.form-style-5 input[type="datetime"],
-.form-style-5 input[type="email"],
 .form-style-5 input[type="number"],
 .form-style-5 input[type="search"],
 .form-style-5 input[type="time"],
-.form-style-5 input[type="url"],
-.form-style-5 textarea,
-.form-style-5 select {
+.form-style-5 textarea {
     font-family: Georgia, "Times New Roman", Times, serif;
     background: rgba(255,255,255,.1);
     border: none;
@@ -71,7 +66,7 @@ legend{
 .form-style-5 input[type="url"]:focus,
 .form-style-5 textarea:focus,
 .form-style-5 select:focus{
-    background: #d2d9dd;
+    background: #d0d0d0;
 }
 .form-style-5 select{
     -webkit-appearance: menulist-button;
@@ -81,7 +76,7 @@ i{
     color: #7cf86c;
     padding: 5px;
 }
-.form-style-5 .number {
+.form-style-5 .pop {
     background: #7cf86c;
     color: #fff;
     height: 30px;
@@ -118,7 +113,7 @@ i{
 {
     background: #3ab731;
 }
-span.number{
+span.pop{
     margin: 5px;
 }
 textarea.message{

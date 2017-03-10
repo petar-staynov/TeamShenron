@@ -22,7 +22,7 @@
   		Моите оценки
     </a>
     <a class="item">
-    	<i class="file text outline icon"></i>
+    	<i class="edit icon"></i>
   		Домашни
     </a>
     <a href="schedule.php" class="item">

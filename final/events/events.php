@@ -16,7 +16,7 @@ $events = [
     ['title' => "Изложение на клубовете", 'date' => '10-04-2017']
 ];
 ?>
-
+asdasdasdssss
 <div id="events-wrapper">
     <table>
         <th colspan="2">Събития/Известия</th>

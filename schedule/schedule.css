@@ -24,7 +24,7 @@
     font-size: large;
     font-weight: 900;
     color: #ffffff;
-    background: #93D5AA ;
+    background: #6199A0;
 }
 .schedule-table tr {
     display: table-row;
@@ -44,11 +44,11 @@
 
 .schedule-table input[type=submit] {
     color: #FFFFFF;
-    background: #93D5AA;
+    background: #6199A0;
     padding: 10px 20px 10px 20px;
     text-decoration: none;
 }
 .schedule-table input[type=submit]:hover {
-    background: #80d69d;
+    background: #6199A0;
     text-decoration: none;
 }

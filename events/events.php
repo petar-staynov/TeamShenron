@@ -22,12 +22,12 @@ $events = [
         <th colspan="2">Събития/Известия</th>
         <tr><th>Заглавие</th><th>Дата</th></tr>
             <?php foreach ($events as $event) {
-                echo "<tr>";
-                $id = null;
+                echo "<a href='viewEvent.php'><tr>";
+                $id = 0;
                 $title = $event['title'];
                 $date = $event['date'];
-                echo "<td>$title</td><td>$date</td>";
-                echo "</tr>";
+                echo "<td><a href='viewEvent.php?id=$id'>$title</a></td><td>$date</td>";
+                echo "</a></tr>";
             } ?>
     </table>
 </div>

@@ -1,3 +1,4 @@
+<?php include_once 'back-end/db.php'; ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +16,35 @@
                 .modal('show');
         }
     </script>
+
+
+    <!-- AJAX request -->
+	<script>
+		function showSchools() {
+			let region = document.getElementById("school-city");
+			console.log(region);
+			region = region.options[region.selectedIndex].value;
+			console.log(region);
+		    if (region.length == 0) { 
+		        //Selecta e prazen
+		         document.getElementById("schools").innerHTML = "";
+		        return;
+		    } else {
+		        var xmlhttp = new XMLHttpRequest();
+		        xmlhttp.onreadystatechange = function() {
+		            if (this.readyState == 4 && this.status == 200) {
+		               	//Napulni selecta s uchilishta
+		               	$('#schools').html(this.responseText).selectmenu("refresh");
+		            }
+		        };
+		        xmlhttp.open("GET", "back-end/show-schools.php?region=" + region, true);
+		        xmlhttp.send();
+		    }
+
+		    $('#schools').selectmenu("refresh");
+		}
+	</script>
+
 </head>
 <body class="login">
 <div class="top">
@@ -81,25 +111,50 @@
         </div>
         <div class="field">
             <label>Вие сте?</label>
-            <select name="" required>
-                <label>-- Моля изберете --/label>
+            <select name="type" class="ui dropdown" required>
+                <label>-- Моля изберете --</label>
                     <option>Ученик</option>
                     <option>Преподавател</option>
                     <option>Директор</option>
             </select>
         </div>
         <div class="field">
-            <label>От?</label>
-            <select class="" required>
-                <option>91 НЕГ</option>
-                <option>1 АЕГ</option>
-                <option>9 ФЕГ</option>
-                <option>СМГ</option>
+        	<label>Ващето училище се намира в град</label>
+        	<select id="school-city" name="school-city" class="ui dropdown" required onchange="showSchools()">
+        		<?php 
+        			$sql = 'SELECT DISTINCT region FROM schools';
+        			$query = mysqli_query($db, $sql);
+        			while ($row = mysqli_fetch_assoc($query)) { ?>
+        				<option value="<?= $row['region'] ?>"><?= $row['region'] ?></option>
+    		<?php	}
+        		?>
+        	</select>
+        </div>
+        <div class="field">
+            <label>Училище</label>
+            <select id="schools" class="ui dropdown" required>
+            	<option selected>Изберете училище</option>
+            	<?php 
+            		$sql = 'SELECT * FROM schools WHERE region = "Благоевград"';
+            		$query = mysqli_query($db, $sql);
+
+            		while ($row = mysqli_fetch_assoc($query)) { ?>
+            			<option value="<?= $row['id'] ?>"><?= $row['name'] ?></option>
+        	<?php	}
+            	?>
             </select>
         </div>
         <div class="field">
             <input type="submit" name="submit" class="ui inverted green button" value="Регистрирай се">
         </div>
+
+        <!-- Dropdown -->
+		<script>
+			$('.ui.dropdown')
+			  .dropdown()
+			;
+		</script>
+
     </form>
 </div>
 <!-- END REGISTER -->

@@ -17,6 +17,18 @@
         }
     </script>
 
+    <!-- Show inputs for student -->
+    <script>
+        function showStudentInputs() {
+            let role = $('#role').find(":selected").text();
+            if (role == 'Ученик') {
+                $('#class').fadeIn('400');
+            }
+            else {
+                $('#class').fadeOut('400');
+            }
+        }
+    </script>
 
     <!-- AJAX request -->
 	<script>
@@ -111,16 +123,21 @@
         </div>
         <div class="field">
             <label>Вие сте?</label>
-            <select name="type" class="ui dropdown" required>
-                <label>-- Моля изберете --</label>
-                    <option>Ученик</option>
-                    <option>Преподавател</option>
-                    <option>Директор</option>
+            <select name="type" class="ui dropdown" required onchange="showStudentInputs()" id="role">
+                    <option selected>Моля изберете</option>
+                    <?php 
+                        $sql = 'SELECT * FROM roles';
+                        $query = mysqli_query($db, $sql);
+                        while ($row = mysqli_fetch_assoc($query)) { ?>
+                            <option value="<?= $row['id'] ?>"><?= $row['name'] ?></option>
+                <?php    }
+                    ?>
             </select>
         </div>
         <div class="field">
         	<label>Ващето училище се намира в град</label>
         	<select id="school-city" name="school-city" class="ui dropdown" required onchange="showSchools()">
+                <option selected>Изберете град</option>
         		<?php 
         			$sql = 'SELECT DISTINCT region FROM schools';
         			$query = mysqli_query($db, $sql);
@@ -132,10 +149,10 @@
         </div>
         <div class="field">
             <label>Училище</label>
-            <select id="schools" class="ui dropdown" required>
+            <select id="schools" class="ui dropdown" required name="school">
             	<option selected>Изберете училище</option>
             	<?php 
-            		$sql = 'SELECT * FROM schools WHERE region = "Благоевград"';
+            		$sql = 'SELECT * FROM schools';
             		$query = mysqli_query($db, $sql);
 
             		while ($row = mysqli_fetch_assoc($query)) { ?>
@@ -144,6 +161,33 @@
             	?>
             </select>
         </div>
+
+        <div class="field" style="display: none;" id="class">
+            <label>Паралелка: </label>
+            <select class="ui dropdown" name="class-number">
+                <option selected>Клас</option>
+                <option value="1">1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+            </select>
+            <select class="ui dropdown" name="class-letter">
+                <option selected>Буква</option>
+                <option>А</option>
+                <option>Б</option>
+                <option>В</option>
+                <option>Г</option>
+            </select>
+        </div>
+
         <div class="field">
             <input type="submit" name="submit" class="ui inverted green button" value="Регистрирай се">
         </div>

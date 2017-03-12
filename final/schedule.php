@@ -50,12 +50,12 @@ if(isset($_POST['permissions'])){
 }
 ?>
 
-
+<div class="ui container">
 <div class="schedule-table">
 <?php if ($userLevel <= 3) { echo "<form method='post'>"; } ?>
     <table>
         <tr>
-            <th colspan="8"><?php echo "$school $class$classLetter"?></th>
+            <th class="main-th" colspan="8"><?php echo "$school $class$classLetter"?></th>
         </tr>
         <?php echo "<th class='schedule-day-num'> </th>"; ?>
         <?php for ($day = 0; $day < count($days); $day++) { //Days of week heading row loop
@@ -88,6 +88,7 @@ if(isset($_POST['permissions'])){
     </form>
 
 <?php var_dump($schedule) ?>
+</div>
 </div>
 </body>
 </html>

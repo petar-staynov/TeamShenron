@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 13 март 2017 в 17:56
+-- Generation Time: 13 март 2017 в 18:25
 -- Версия на сървъра: 10.1.19-MariaDB
 -- PHP Version: 7.0.13
 
@@ -28,10 +28,10 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `classes` (
   `id` int(11) NOT NULL,
-  `class_num` varchar(255) NOT NULL,
-  `class_letter` tinytext,
+  `class_num` varchar(255) CHARACTER SET latin1 NOT NULL,
+  `class_letter` tinytext CHARACTER SET latin1,
   `school_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
 
 -- --------------------------------------------------------
 
@@ -43,7 +43,7 @@ CREATE TABLE `grades` (
   `id` int(11) NOT NULL,
   `associated_user_id` int(11) NOT NULL,
   `grade` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
 
 -- --------------------------------------------------------
 
@@ -53,17 +53,19 @@ CREATE TABLE `grades` (
 
 CREATE TABLE `roles` (
   `id` int(11) NOT NULL,
-  `name` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `name` varchar(250) CHARACTER SET utf8 NOT NULL,
+  `role_index` varchar(250) CHARACTER SET utf8 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
 
 --
 -- Схема на данните от таблица `roles`
 --
 
-INSERT INTO `roles` (`id`, `name`) VALUES
-(1, 'Ученик'),
-(2, 'Учител'),
-(3, 'Директор');
+INSERT INTO `roles` (`id`, `name`, `role_index`) VALUES
+(1, 'Ученик', 'profile.php'),
+(2, 'Учител', ''),
+(3, 'Директор', ''),
+(4, 'Админ', 'directors.php');
 
 -- --------------------------------------------------------
 
@@ -74,8 +76,8 @@ INSERT INTO `roles` (`id`, `name`) VALUES
 CREATE TABLE `schedules` (
   `id` int(11) NOT NULL,
   `class_id` int(11) NOT NULL,
-  `schedule` text CHARACTER SET utf8 COLLATE utf8_unicode_520_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `schedule` text COLLATE utf8_unicode_520_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
 
 --
 -- Схема на данните от таблица `schedules`
@@ -2707,24 +2709,24 @@ INSERT INTO `schools` (`id`, `name`, `type`, `city`, `region`, `finance`) VALUES
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `first_name` varchar(250) NOT NULL,
-  `last_name` varchar(250) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `approved` tinyint(1) NOT NULL DEFAULT '0',
+  `first_name` varchar(250) CHARACTER SET utf8 NOT NULL,
+  `last_name` varchar(250) CHARACTER SET utf8 NOT NULL,
+  `username` varchar(250) CHARACTER SET utf8 NOT NULL,
+  `password` varchar(250) CHARACTER SET utf8 NOT NULL,
+  `email` varchar(250) CHARACTER SET utf8 NOT NULL,
+  `approved` tinyint(1) NOT NULL,
   `school_id` int(11) NOT NULL,
   `class_id` int(11) NOT NULL,
   `role_id` int(11) NOT NULL,
-  `registered_at` datetime DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `registered_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
 
 --
 -- Схема на данните от таблица `users`
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `approved`, `school_id`, `class_id`, `role_id`, `registered_at`) VALUES
-(5, 'pesho', 'pesho2', 'pesho', '$2y$10$NSMTye9d632ISB3/.3kwVeuKaNjE5IkADCaHjLD/7RY37ZpYJ8U9S', 'pesho@abv.bg', 0, 3240, 0, 2, '2017-03-13 17:43:28');
+(2, 'Ангел', 'Миладинов', 'angelcho', '$2y$10$DKgjP9pRZ58k6COqXPnsgOn7NkhFtcRIjPnpGLKT7wfX7CQlBO3Hy', 'miladinov_1997@abv.bg', 0, 30, 0, 3, '2017-03-13 19:23:05');
 
 --
 -- Indexes for dumped tables
@@ -2784,7 +2786,7 @@ ALTER TABLE `grades`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `schedules`
 --
@@ -2799,7 +2801,7 @@ ALTER TABLE `schools`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

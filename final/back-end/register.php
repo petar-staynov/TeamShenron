@@ -8,7 +8,6 @@ if (isset($_POST['submit'])) {
     $email = mysqli_real_escape_string($db, $_POST['email']);
     $password = mysqli_real_escape_string($db, $_POST['password']);
     $type = mysqli_real_escape_string($db, $_POST['type']);
-    //$schoolCity = mysqli_real_escape_string($db, $_POST['school-city']);
     $school = mysqli_real_escape_string($db, $_POST['school']);
 
     //Provervka dali takuv username ili email sushtestvuva
@@ -16,6 +15,7 @@ if (isset($_POST['submit'])) {
     $query = mysqli_query($db, $sql);
     if (mysqli_num_rows($query)) {
         header("Location: ../login-form.php?error=exists");
+        exit;
     }
 
     $password = password_hash($password, PASSWORD_BCRYPT);
@@ -33,6 +33,7 @@ if (isset($_POST['submit'])) {
     //Proverqva dali vuvedenata stoinost za rolq se namira v masiva s vsichki roli
     if (!array_key_exists($type, $roles)) {
         header("Location: ../login-form.php?error=type");
+        exit;
     }
 
     if ($roles[$type] == 'Ученик') {
@@ -53,6 +54,7 @@ if (isset($_POST['submit'])) {
         $query = mysqli_query($db, $sql);
         $_SESSION['user_info'] = mysqli_fetch_assoc($query);
         header("Location: ../index.php");
+        exit;
     }
 } 
 

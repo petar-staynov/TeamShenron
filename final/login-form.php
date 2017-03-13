@@ -57,22 +57,39 @@
 		}
 	</script>
 
+    <!-- Message close -->
+    <script>
+        $('.message .close')
+          .on('click', function() {
+            $(this)
+              .closest('.message')
+              .transition('fade')
+            ;
+          })
+        ;
+    </script>
+
 </head>
 <body class="login">
 <div class="top">
-<?php 
-    if (isset($_GET['error'])) {
-        $error = $_GET['error'];
-
-        if ($error == 'empty') { ?>
-           <div class="alert alert-danger">
-               <strong>НЕ може празно име или парола</strong>
-           </div>
-<?php    }
-    }
-?>
     <div id="wrapper">
         <div id="main">
+            <?php 
+                if (isset($_GET['error'])) {
+                    $error = $_GET['error'];
+
+                    if ($error == 'empty') { ?>
+                        <div class="ui centered grid">
+                            <div class="four wide column">
+                                <div class="ui red message">
+                                    <i class="close icon"></i>
+                                    <strong>НЕ може празно име или парола</strong>
+                                </div>
+                            </div>
+                        </div>
+            <?php    }
+                }
+            ?>
             <h1 class="front-title">УЧИЛИЩЕН ПРОФИЛ</h1>
             <h2 class="second-front-title"></h2>
             <div class="ui one column stackable center aligned page grid">

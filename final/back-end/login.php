@@ -17,26 +17,26 @@ if (isset($_POST['username']) && !empty($_POST['username']) && isset($_POST['pas
     $result = mysqli_query($db, $query);
     $count = mysqli_num_rows($result);
 
-    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-    $firstname = $row['firstname'];
-    $lastname = $row['lastname'];
-    $names = $firstname . " " . $lastname;
+    if (!$count) {
+        header("Location: ../login-form.php?error=noexist");
+        exit;
+    }
+
+    $row = mysqli_fetch_assoc($result);
 
     $hashedPass = $row['password'];
 
-    $permission = $row['password'];
     $approved = $row['approved'];
 
-    //TODO approve the integration of 5th level permissions for non verified users
-    if ($approved != 1){
-        $permission = 5;
+    if (!$approved){
+        //TODO da vodi kum stranica koqto mu kazva che ne e odobren oshte
     }
     if (password_verify($password, $hashedPass)) {
         echo "SUCCESS<br>";
         echo "your username is $username, you real name is $names\n";
 
-        $_SESSION['username'] = $username;
-        $_SESSION['names'] = $names;
+        $_SESSION['user_info'] = $row;
+        $_SESSION['logged'] = true;
     } else {
         echo "Wrong username/password";
     }

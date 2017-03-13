@@ -1,7 +1,6 @@
 <?php 
 	include_once('back-end/is-logged.php');
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>

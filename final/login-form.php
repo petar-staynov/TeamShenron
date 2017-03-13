@@ -154,7 +154,7 @@
             <select name="type" class="ui dropdown" required onchange="showStudentInputs()" id="role">
                     <option selected>Моля изберете</option>
                     <?php 
-                        $sql = 'SELECT * FROM roles';
+                        $sql = 'SELECT * FROM roles WHERE name != "Админ"';
                         $query = mysqli_query($db, $sql);
                         while ($row = mysqli_fetch_assoc($query)) { ?>
                             <option value="<?= $row['id'] ?>"><?= $row['name'] ?></option>

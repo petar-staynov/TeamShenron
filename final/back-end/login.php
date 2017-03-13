@@ -32,11 +32,11 @@ if (isset($_POST['username']) && !empty($_POST['username']) && isset($_POST['pas
         //TODO da vodi kum stranica koqto mu kazva che ne e odobren oshte
     }
     if (password_verify($password, $hashedPass)) {
-        echo "SUCCESS<br>";
-        echo "your username is $username, you real name is $names\n";
-
         $_SESSION['user_info'] = $row;
         $_SESSION['logged'] = true;
+
+        header("Location: ../index.php");
+        exit;
     } else {
         echo "Wrong username/password";
     }

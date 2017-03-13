@@ -1,5 +1,6 @@
 <?php
 include('db.php');
+session_start();
 
 if (isset($_POST['submit'])) {
     $firstname = mysqli_real_escape_string($db, $_POST['firstname']);
@@ -58,7 +59,7 @@ if (isset($_POST['submit'])) {
         exit;
     }
     else {
-       header("Location: ../login-form.php");
+        header("Location: ../login-form.php");
         exit; 
     }
 } 

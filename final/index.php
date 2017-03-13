@@ -22,7 +22,7 @@
     	<div class="ui container" style="margin-top: 100px;">
     		<?php 
     			$role = getRole($db, $_SESSION['user_info']['username']);
-    			include_once $role['role_index'];
+    			include_once 'includes/' . $role['role_index'];
     		?>
     	</div>
   	</div>

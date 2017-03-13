@@ -60,6 +60,17 @@
 </head>
 <body class="login">
 <div class="top">
+<?php 
+    if (isset($_GET['error'])) {
+        $error = $_GET['error'];
+
+        if ($error == 'empty') { ?>
+           <div class="alert alert-danger">
+               <strong>НЕ може празно име или парола</strong>
+           </div>
+<?php    }
+    }
+?>
     <div id="wrapper">
         <div id="main">
             <h1 class="front-title">УЧИЛИЩЕН ПРОФИЛ</h1>
@@ -81,7 +92,7 @@
     <form id="login" class="ui form" action="back-end/login.php" method="post">
         <h1>Вход</h1>
         <div class=" field">
-            <label>Потребителско име</label>
+            <label>Потребителско име или email</label>
             <input type="text" name="username" placeholder="Потребителско име" required>
         </div>
         <div class=" field">

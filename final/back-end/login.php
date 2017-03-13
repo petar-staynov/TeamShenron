@@ -2,20 +2,19 @@
 include("db.php");
 session_start();
 
-if (isset($_POST['submit'])) {
-    $conn = $db;
-    if (!$conn) {
+if (isset($_POST['username']) && !empty($_POST['username']) && isset($_POST['password']) && !empty($_POST['password'])) {
+    if (!$db) {
         die("Connection failed:" . mysqli_connect_error());
     }
 
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $username = mysqli_real_escape_string($conn, $username);
-    $password = mysqli_real_escape_string($conn, $password);
+    $username = mysqli_real_escape_string($db, $username);
+    $password = mysqli_real_escape_string($db, $password);
 
     $query = "SELECT * FROM users WHERE username='$username'";
-    $result = mysqli_query($conn, $query);
+    $result = mysqli_query($db, $query);
     $count = mysqli_num_rows($result);
 
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
@@ -41,5 +40,8 @@ if (isset($_POST['submit'])) {
     } else {
         echo "Wrong username/password";
     }
-    mysqli_close($conn);
+    mysqli_close($db);
+}
+else {
+    header("Location: ../login-form.php?error=empty");
 }

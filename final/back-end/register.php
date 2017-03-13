@@ -52,9 +52,8 @@ if (isset($_POST['submit'])) {
 
         $sql = 'SELECT * FROM users WHERE username = "'.$username.'"';
         $query = mysqli_query($db, $sql);
-        
+
         $_SESSION['user_info'] = mysqli_fetch_assoc($query);
-        $_SESSION['logged'] = true;
         header("Location: ../index.php");
         exit;
     }

@@ -34,9 +34,7 @@
 	<script>
 		function showSchools() {
 			let region = document.getElementById("school-city");
-			console.log(region);
 			region = region.options[region.selectedIndex].value;
-			console.log(region);
 		    if (region.length == 0) { 
 		        //Selecta e prazen
 		         document.getElementById("schools").innerHTML = "";

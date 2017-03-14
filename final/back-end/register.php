@@ -55,6 +55,13 @@ if (isset($_POST['submit'])) {
         $query = mysqli_query($db, $sql);
 
         $_SESSION['user_info'] = mysqli_fetch_assoc($query);
+
+        //Send mail
+        $subject = "Регистрация в school.bg";
+        $messsage = "Вашата заявка за регистрация в school.bg беше изпратена и очаква одобрение";
+        $headers = "From: school.bg";
+        mail($email, $subject, $message, $headers);
+
         header("Location: ../index.php");
         exit;
     }

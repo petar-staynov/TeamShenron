@@ -1,9 +1,8 @@
 <?php 
-	function getRole($db, $username) {
-		$sql = 'SELECT * FROM users INNER JOIN roles ON users.role_id = roles.role_id WHERE users.username = "'.$username.'"';
+	function getRole($db, $role_id) {
+		$sql = 'SELECT * FROM roles WHERE id = "'.$role_id.'"';
 		$query = mysqli_query($db, $sql);
-		$row = mysqli_fetch_assoc($query);
-		return $row;
+		return mysqli_fetch_assoc($query);
 	}
 
 	function getRegistrations($db, $role_id) {
@@ -17,5 +16,11 @@
 		}
 
 		return $rows;
+	}
+
+	function getSchool($db, $school_id) {
+		$sql = 'SELECT * FROM schools WHERE id = "'.$school_id.'"';
+		$query = mysqli_query($db, $sql);
+		return mysqli_fetch_assoc($query);
 	}
 ?>

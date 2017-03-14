@@ -19,7 +19,7 @@
 	<div class="ui container">
 		<div class="ui centered grid">
 			<div class="eight wide column" style="margin-top: 300px;">
-				<h1 class="white text-center">Профилът ви още не е одобрен</h1>
+				<h1 class="white text-center animated zoomIn">Профилът ви още не е одобрен</h1>
 			</div>
 		</div>
 	</div>

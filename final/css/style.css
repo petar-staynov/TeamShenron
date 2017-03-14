@@ -130,6 +130,10 @@ header .right a.item:hover, header .right li.item:hover, header .right div.item:
     color: white;
 }
 
+.white {
+    color: white !important;
+}
+
 header .right .notification {
     position: absolute;
     background-color: #93D5AA;

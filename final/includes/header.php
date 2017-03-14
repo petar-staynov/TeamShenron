@@ -24,7 +24,7 @@
 	    	</div>
 	    	<a href="index.php" class="item">
 	    		<img class="ui mini circular image profile_img" src="images/profile_pic.png" />
-	    		<span class="profile_name">Ангел Миладинов</span>
+	    		<span class="profile_name"><?= htmlspecialchars($_SESSION['user_info']['first_name']) . ' ' . htmlspecialchars($_SESSION['user_info']['last_name']) ?></span>
 	    	</a>
     		<a href="back-end/logout.php" class="item header_signout">Изход</a>
   		</div>

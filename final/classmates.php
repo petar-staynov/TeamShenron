@@ -3,6 +3,7 @@
 <head>
 	<?php 
 		include_once 'includes/head.php';
+		session_start();
 	?>
 </head>
 <body>

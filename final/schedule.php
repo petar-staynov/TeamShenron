@@ -1,23 +1,22 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <?php 
-        include_once 'includes/head.php';
-    ?>
-</head>
-
-<body>
-
-<?php
-include_once "includes/sidebar.php";
-include_once "includes/header.php";
-?>
-
-
 <?php
 session_start();
-//these will be pulled from database
-$userLevel = 3;
+include_once 'includes/head.php';
+
+include_once "includes/sidebar.php";
+include_once "includes/header.php";
+
+//0-admin 1-teacher 2-direktor 3-student
+$userLevel = $_SESSION['user_info']['role_id'];
+$approved = $_SESSION['user_info']['approved'];
+$schoolId = $_SESSION['user_info']['school_id'];
+$classId = $_SESSION['user_info']['class_id'];
+
+function getSchoolInfo(){
+
+}
+function getClassInfo() {
+
+}
 $school = "1во СОУ";
 $class = "11";
 $classLetter = "А";
@@ -31,11 +30,8 @@ $schedule = [['пон-1', 'пон-2', 'пон-3', '', '', '', '', ''],
     ['пт-1', 'пт-2', 'пт-3', '', '', '', '', ''],
     ['сб-1', 'сб-2', 'сб-3', '', '', '', '', ''],
     ['нд-1', 'нд-2', 'нд-3', '', '', '', '', '']];
-?>
 
-
-<?php
-if(isset($_POST['submit-schedule']) && $userLevel <= 3){
+if (isset($_POST['submit-schedule']) && $userLevel < 3 && $approved = 1) {
     $schedule = [[$_POST['mon-0'], $_POST['mon-1'], $_POST['mon-2'], $_POST['mon-3'], $_POST['mon-4'], $_POST['mon-5'], $_POST['mon-6'], $_POST['mon-7']],
         [$_POST['tue-0'], $_POST['tue-1'], $_POST['tue-2'], $_POST['tue-3'], $_POST['tue-4'], $_POST['tue-5'], $_POST['tue-6'], $_POST['tue-7']],
         [$_POST['wed-0'], $_POST['wed-1'], $_POST['wed-2'], $_POST['wed-3'], $_POST['wed-4'], $_POST['wed-5'], $_POST['wed-6'], $_POST['wed-7']],
@@ -45,51 +41,43 @@ if(isset($_POST['submit-schedule']) && $userLevel <= 3){
         [$_POST['sun-0'], $_POST['sun-1'], $_POST['sun-2'], $_POST['sun-3'], $_POST['sun-4'], $_POST['sun-5'], $_POST['sun-6'], $_POST['sun-7']],];
 }
 ?>
-<?php
-if(isset($_POST['permissions'])){
-    $userLevel++;
-}
-?>
-
 <div class="ui container">
-<div class="schedule-table">
-<?php if ($userLevel <= 3) { echo "<form method='post'>"; } ?>
-    <table>
-        <tr>
-            <th class="main-th" colspan="8"><?php echo "$school $class$classLetter"?></th>
-        </tr>
-        <?php echo "<th class='schedule-day-num'> </th>"; ?>
-        <?php for ($day = 0; $day < count($days); $day++) { //Days of week heading row loop
-            echo "<th>$days[$day]</th>";
+    <div class="schedule-table">
+        <?php if ($userLevel < 3 && $approved = 1) {
+            echo "<form method='post'>";
         } ?>
-        <?php for ($row = 0; $row < 8; $row++) { //ROW LOOP
-            echo "<tr id='schedule-row-$row'>";
-            $rowNum = $row+1;
-            echo "<td class='schedule-day-num'>$rowNum</td>";
+        <table>
+            <tr>
+                <th class="main-th" colspan="8"><?php echo "$school $class$classLetter" ?></th>
+            </tr>
+            <?php echo "<th class='schedule-day-num'> </th>"; ?>
+            <?php for ($day = 0; $day < count($days); $day++) { //Days of week heading row loop
+                echo "<th>$days[$day]</th>";
+            } ?>
+            <?php for ($row = 0; $row < 8; $row++) { //ROW LOOP
+                echo "<tr id='schedule-row-$row'>";
+                $rowNum = $row + 1;
+                echo "<td class='schedule-day-num'>$rowNum</td>";
                 for ($col = 0; $col < 7; $col++) { //COL LOOP
                     $name = $daysEn[$col] . "-" . $row;
-                    if ($userLevel == 4) {
-                    echo "<td name='$name'>" . $schedule[$col][$row] . "</td>";
-                    } elseif ($userLevel <=3) {
+                    if ($userLevel == 3) {
+                        echo "<td name='$name'>" . $schedule[$col][$row] . "</td>";
+                    } elseif ($userLevel < 3 && $approved = 1) {
                         $value = $schedule[$col][$row];
                         echo "<td><input name='$name' value='$value'></td>";
                     }
                 }
-            echo "</tr>"; }  ?>
-        <?php if ($userLevel <= 3) {
-            echo "<tr> <td colspan='8'>";
-            echo "<input type='submit' name='submit-schedule' value='Submit'>";
-            echo "</td> </tr>";
+                echo "</tr>";
+            } ?>
+            <?php if ($userLevel < 3 && $approved = 1) {
+                echo "<tr> <td colspan='8'>";
+                echo "<input type='submit' name='submit-schedule' value='Submit'>";
+                echo "</td> </tr>";
+            } ?>
+        </table>
+        <?php if ($userLevel < 3 && $approved = 1) {
+            echo "</form>";
         } ?>
-    </table>
-<?php if ($userLevel <= 3) { echo "</form>"; } ?>
-
-    <form method="post">
-        <input type="submit" name="permissions" value="Become a Student">
-    </form>
-
-<?php var_dump($schedule) ?>
+        <?php var_dump($schedule) ?>
+    </div>
 </div>
-</div>
-</body>
-</html>

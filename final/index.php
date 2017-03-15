@@ -25,8 +25,9 @@
     	?>
     	<div class="ui container" style="margin-top: 100px;">
     		<?php 
-    			$role = getRole($db, $_SESSION['user_info']['role_id']);
-    			include_once 'includes/' . $role['role_index'];
+//    			$role = getRole($db, $_SESSION['user_info']['role_id']);
+//    			include_once 'includes/profile.php' . $role['role_index'];
+            include_once 'includes/profile.php';
     		?>
     	</div>
   	</div>

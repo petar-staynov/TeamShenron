@@ -15,6 +15,7 @@ include_once "includes/header.php";
 
 
 <?php
+session_start();
 //these will be pulled from database
 $userLevel = 3;
 $school = "1во СОУ";

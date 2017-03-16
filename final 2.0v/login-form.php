@@ -16,7 +16,7 @@
                 .modal('show');
         }
 
-            </script>
+    </script>
 
     <!-- Show inputs for student -->
     <script>
@@ -32,39 +32,39 @@
     </script>
 
     <!-- AJAX request -->
-	<script>
-		function showSchools() {
-			let region = document.getElementById("school-city");
-			region = region.options[region.selectedIndex].value;
-		    if (region.length == 0) { 
-		        //Selecta e prazen
-		         document.getElementById("schools").innerHTML = "";
-		        return;
-		    } else {
-		        var xmlhttp = new XMLHttpRequest();
-		        xmlhttp.onreadystatechange = function() {
-		            if (this.readyState == 4 && this.status == 200) {
-		               	//Napulni selecta s uchilishta
-		               	$('#schools').html(this.responseText).selectmenu("refresh");
-		            }
-		        };
-		        xmlhttp.open("GET", "back-end/show-schools.php?region=" + region, true);
-		        xmlhttp.send();
-		    }
+    <script>
+        function showSchools() {
+            let region = document.getElementById("school-city");
+            region = region.options[region.selectedIndex].value;
+            if (region.length == 0) {
+                //Selecta e prazen
+                document.getElementById("schools").innerHTML = "";
+                return;
+            } else {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        //Napulni selecta s uchilishta
+                        $('#schools').html(this.responseText).selectmenu("refresh");
+                    }
+                };
+                xmlhttp.open("GET", "back-end/show-schools.php?region=" + region, true);
+                xmlhttp.send();
+            }
 
-		    $('#schools').selectmenu("refresh");
-		}
-	</script>
+            $('#schools').selectmenu("refresh");
+        }
+    </script>
 
     <!-- Message close -->
     <script>
         $('.message .close')
-          .on('click', function() {
-            $(this)
-              .closest('.message')
-              .transition('fade')
-            ;
-          })
+            .on('click', function () {
+                $(this)
+                    .closest('.message')
+                    .transition('fade')
+                ;
+            })
         ;
     </script>
 
@@ -73,22 +73,23 @@
 <div class="top">
     <div id="wrapper">
         <div id="main">
-            <?php 
-                if (isset($_GET['error'])) {
-                    $error = $_GET['error'];
-
-                    if ($error == 'empty') { ?>
-                        <div class="ui centered grid">
-                            <div class="four wide column">
-                                <div class="ui red message">
-                                    <i class="close icon"></i>
-                                    <strong>НЕ може празно име или парола</strong>
-                                </div>
-                            </div>
+            <?php
+            if (isset($_GET['error'])) {
+                ?>
+                <div class="ui centered grid">
+                    <div class="four wide column">
+                        <div class="ui red message">
+                            <i class="close icon"></i>
+                            <strong>
+                                <?php
+                                $error = $_GET['error'];
+                                echo "$error";
+                                ?>
+                            </strong>
                         </div>
-            <?php    }
-                }
-            ?>
+                    </div>
+                </div>
+            <?php } ?>
             <h1 class="front-title">УЧИЛИЩЕН ПРОФИЛ</h1>
             <h2 class="second-front-title"></h2>
             <div class="ui one column stackable center aligned page grid">
@@ -151,41 +152,41 @@
         <div class="field">
             <label>Вие сте?</label>
             <select name="type" class="ui dropdown" required onchange="showStudentInputs()" id="role">
-                    <option selected>Моля изберете</option>
-                    <?php 
-                        $sql = 'SELECT * FROM roles WHERE name != "Админ"';
-                        $query = mysqli_query($db, $sql);
-                        while ($row = mysqli_fetch_assoc($query)) { ?>
-                            <option value="<?= $row['id'] ?>"><?= $row['name'] ?></option>
-                <?php    }
-                    ?>
+                <option selected>Моля изберете</option>
+                <?php
+                $sql = 'SELECT * FROM roles WHERE name != "Админ"';
+                $query = mysqli_query($db, $sql);
+                while ($row = mysqli_fetch_assoc($query)) { ?>
+                    <option value="<?= $row['id'] ?>"><?= $row['name'] ?></option>
+                <?php }
+                ?>
             </select>
         </div>
         <div class="field">
-        	<label>Ващето училище се намира в град</label>
-        	<select id="school-city" name="school-city" class="ui dropdown" required onchange="showSchools()">
+            <label>Ващето училище се намира в град</label>
+            <select id="school-city" name="school-city" class="ui dropdown" required onchange="showSchools()">
                 <option selected>Изберете град</option>
-        		<?php 
-        			$sql = 'SELECT DISTINCT region FROM schools';
-        			$query = mysqli_query($db, $sql);
-        			while ($row = mysqli_fetch_assoc($query)) { ?>
-        				<option value="<?= $row['region'] ?>"><?= $row['region'] ?></option>
-    		<?php	}
-        		?>
-        	</select>
+                <?php
+                $sql = 'SELECT DISTINCT region FROM schools';
+                $query = mysqli_query($db, $sql);
+                while ($row = mysqli_fetch_assoc($query)) { ?>
+                    <option value="<?= $row['region'] ?>"><?= $row['region'] ?></option>
+                <?php }
+                ?>
+            </select>
         </div>
         <div class="field">
             <label>Училище</label>
             <select id="schools" class="ui dropdown" required name="school">
-            	<option selected>Изберете училище</option>
-            	<?php 
-            		$sql = 'SELECT * FROM schools';
-            		$query = mysqli_query($db, $sql);
+                <option selected>Изберете училище</option>
+                <?php
+                $sql = 'SELECT * FROM schools';
+                $query = mysqli_query($db, $sql);
 
-            		while ($row = mysqli_fetch_assoc($query)) { ?>
-            			<option value="<?= $row['id'] ?>"><?= $row['name'] ?></option>
-        	<?php	}
-            	?>
+                while ($row = mysqli_fetch_assoc($query)) { ?>
+                    <option value="<?= $row['id'] ?>"><?= $row['name'] ?></option>
+                <?php }
+                ?>
             </select>
         </div>
 
@@ -220,11 +221,11 @@
         </div>
 
         <!-- Dropdown -->
-		<script>
-			$('.ui.dropdown')
-			  .dropdown()
-			;
-		</script>
+        <script>
+            $('.ui.dropdown')
+                .dropdown()
+            ;
+        </script>
 
     </form>
 </div>

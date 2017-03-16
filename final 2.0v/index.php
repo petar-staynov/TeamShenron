@@ -3,9 +3,9 @@ include_once 'back-end/is-logged.php';
 include_once 'back-end/functions.php';
 include_once 'back-end/db.php';
 
-if (!$_SESSION['user_info']['approved']) {
-    header("Location: not-approved.php");
-}
+//if (!$_SESSION['user_info']['approved']) {
+//    header("Location: not-approved.php");
+//}
 ?>
 <!DOCTYPE html>
 <html>

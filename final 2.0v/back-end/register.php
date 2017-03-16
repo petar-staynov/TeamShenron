@@ -15,7 +15,8 @@ if (isset($_POST['submit'])) {
     $sql = 'SELECT * FROM users WHERE username = "'.$username.'" OR email = "'.$email.'"';
     $query = mysqli_query($db, $sql);
     if (mysqli_num_rows($query)) {
-        header("Location: ../login-form.php?error=exists");
+        $error = "Вече същесвува такъв потребител";
+        header("Location: ../login-form.php?error=$error");
         exit;
     }
 
@@ -33,7 +34,8 @@ if (isset($_POST['submit'])) {
 
     //Proverqva dali vuvedenata stoinost za rolq se namira v masiva s vsichki roli
     if (!array_key_exists($type, $roles)) {
-        header("Location: ../login-form.php?error=type");
+        $error = "Грешка, моля опитайте отново.";
+        header("Location: ../login-form.php?error=$error");
         exit;
     }
 
@@ -49,22 +51,18 @@ if (isset($_POST['submit'])) {
     }
   
     if (mysqli_query($db, $sql)) {
-        $_SESSION['logged'] = true;
-
         $sql = 'SELECT * FROM users WHERE username = "'.$username.'"';
         $query = mysqli_query($db, $sql);
+        $error = "Регистрацията бе успешна. Моля изчакайте одобрение.";
+//        $_SESSION['logged'] = true;
+//        $_SESSION['user_info'] = mysqli_fetch_assoc($query);
 
-        $_SESSION['user_info'] = mysqli_fetch_assoc($query);
-
-        header("Location: ../index.php");
+        header("Location: ../login-form.php?error=$error");
         exit;
     }
-    else {
-        header("Location: ../login-form.php");
-        exit; 
-    }
-} 
-
+}
 else {
-    echo "<h1>You are not supposed to be here. Something went wrong.</h1>";
+    $error = "Нещо се обърка.";
+    header("Location: ../login-form.php?error=$error");
+    exit;
 }

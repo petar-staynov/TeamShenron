@@ -18,7 +18,8 @@ if (isset($_POST['username']) && !empty($_POST['username']) && isset($_POST['pas
     $count = mysqli_num_rows($result);
 
     if (!$count) {
-        header("Location: ../login-form.php?error=noexist");
+        $error = "Грешно име/парола.";
+        header("Location: ../login-form.php?error=$error");
         exit;
     }
 
@@ -29,7 +30,8 @@ if (isset($_POST['username']) && !empty($_POST['username']) && isset($_POST['pas
     $approved = $row['approved'];
 
     if ($approved == 0) {
-        header("Location: ../not-approved.php");
+        $error = "Профилът ви не е одобрен.";
+        header("Location: ../login-form.php?error=$error");
         exit;
     }
 
@@ -40,10 +42,13 @@ if (isset($_POST['username']) && !empty($_POST['username']) && isset($_POST['pas
         header("Location: ../index.php");
         exit;
     } else {
-        echo "Wrong username/password";
+        $error = "Грешно име/парола.";
+        header("Location: ../login-form.php?error=$error");
     }
     mysqli_close($db);
 }
 else {
-    header("Location: ../login-form.php?error=empty");
+    $error = "Нещо се обърка.";
+    header("Location: ../login-form.php?error=$error");
+    exit;
 }

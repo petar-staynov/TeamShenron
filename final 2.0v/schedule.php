@@ -7,13 +7,11 @@ include_once "includes/header.php";
 
 //TODO move backend to separate file
 
-//0-admin 1-teacher 2-direktor 3-student
+//1-student 2-teacher 3-principal 4-admin
 $userLevel = $_SESSION['user_info']['role_id'];
-$userLevel = 2; //TODO remove
 $approved = $_SESSION['user_info']['approved'];
 $schoolId = $_SESSION['user_info']['school_id'];
 $classId = $_SESSION['user_info']['class_id'];
-$classId = 1; //TODO remove
 $schoolName = getSchoolName($db, $schoolId);
 $classInfo = getClassInfo($db, $classId);
 
@@ -69,7 +67,7 @@ if (isset($_POST['submit-schedule']) && $userLevel < 3 && $approved = 1) {
 ?>
 <div class="ui container">
     <div class="schedule-table">
-        <?php if ($userLevel < 3 && $approved = 1) {
+        <?php if ($userLevel > 1 && $approved = 1) {
             echo "<form method='post'>";
         } ?>
         <table>
@@ -87,9 +85,9 @@ if (isset($_POST['submit-schedule']) && $userLevel < 3 && $approved = 1) {
                 echo "<td class='schedule-day-num'>$rowNum</td>";
                 for ($col = 0; $col < 7; $col++) { //COL LOOP
                     $name = $daysEn[$col] . "-" . $row;
-                    if ($userLevel == 3) {
+                    if ($userLevel == 1) {
                         echo "<td name='$name'>" . $schedule[$day] . "</td>";
-                    } elseif ($userLevel < 3 && $approved = 1) {
+                    } elseif ($userLevel > 1 && $approved = 1) {
                         $value = $schedule[$day];
                         echo "<td><input name='$name' value='$value'></td>";
                     }
@@ -97,13 +95,13 @@ if (isset($_POST['submit-schedule']) && $userLevel < 3 && $approved = 1) {
                 }
                 echo "</tr>";
             } ?>
-            <?php if ($userLevel < 3 && $approved = 1) {
+            <?php if ($userLevel > 1 && $approved = 1) {
                 echo "<tr> <td colspan='8'>";
                 echo "<input type='submit' name='submit-schedule' value='Submit'>";
                 echo "</td> </tr>";
             } ?>
         </table>
-        <?php if ($userLevel < 3 && $approved = 1) {
+        <?php if ($userLevel > 1 && $approved = 1) {
             echo "</form>";
         } ?>
     </div>

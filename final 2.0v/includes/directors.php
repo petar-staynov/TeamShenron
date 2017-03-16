@@ -1,53 +1,53 @@
 <div class="ui grid">
-	<?php 
-		if (isset($_GET['approved'])) {
-			$approved = $_GET['approved'];
-
-			if ($approved == 1) { ?>
-                <div class="four wide column">
-                	<div class="ui green message">
-	                    <i class="close icon"></i>
-	                    <strong>Директорa беше одобрен</strong>
-	                </div>
-                </div>
-                <!-- Message close -->
-				<script>
-				    $('.message .close')
-				      .on('click', function() {
-				        $(this)
-				          .closest('.message')
-				          .transition('fade')
-				        ;
-				      })
-				    ;
-				</script>
-	<?php	}
-		}
-		elseif (isset($_GET['declined'])) {
-			$declined = $_GET['declined'];
-
-			if ($declined == 1) { ?>
-				<div class="four wide column">
-                	<div class="ui green message">
-	                    <i class="close icon"></i>
-	                    <strong>Директорa беше премахнат</strong>
-	                </div>
-                </div>
-                <!-- Message close -->
-				<script>
-				    $('.message .close')
-				      .on('click', function() {
-				        $(this)
-				          .closest('.message')
-				          .transition('fade')
-				        ;
-				      })
-				    ;
-				</script>
-	<?php	}
-		}
- 	?>
 	<div class="four column">
+		<?php 
+			if (isset($_GET['approved'])) {
+				$approved = $_GET['approved'];
+
+				if ($approved == 1) { ?>
+	                <div class="four wide column">
+	                	<div class="ui green message">
+		                    <i class="close icon"></i>
+		                    <strong>Директорa беше одобрен</strong>
+		                </div>
+	                </div>
+	                <!-- Message close -->
+					<script>
+					    $('.message .close')
+					      .on('click', function() {
+					        $(this)
+					          .closest('.message')
+					          .transition('fade')
+					        ;
+					      })
+					    ;
+					</script>
+		<?php	}
+			}
+			elseif (isset($_GET['declined'])) {
+				$declined = $_GET['declined'];
+
+				if ($declined == 1) { ?>
+					<div class="four wide column">
+	                	<div class="ui green message">
+		                    <i class="close icon"></i>
+		                    <strong>Директорa беше премахнат</strong>
+		                </div>
+	                </div>
+	                <!-- Message close -->
+					<script>
+					    $('.message .close')
+					      .on('click', function() {
+					        $(this)
+					          .closest('.message')
+					          .transition('fade')
+					        ;
+					      })
+					    ;
+					</script>
+		<?php	}
+			}
+	 	?>
 		<h2 class="text-center">Директори чакащи за одобрение</h2>
 		<div class="ui divider"></div>
 		<?php 

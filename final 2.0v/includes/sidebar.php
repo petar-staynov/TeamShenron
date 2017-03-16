@@ -4,7 +4,16 @@
 			<img class="ui tiny circular image profile_img" src="images/profile_pic.png" />
 			<div class="profile_info">
 				<span class="profile_name"><?= htmlspecialchars($_SESSION['user_info']['first_name']) . ' ' . htmlspecialchars($_SESSION['user_info']['last_name']) ?></span>
-				<h3>12A</h3>
+				<h3>
+          <?php 
+            if ($_SESSION['user_info']['role_id'] == 4) { ?>
+                Админ
+      <?php }
+          elseif ($_SESSION['user_info']['role_id'] == 1) {
+            
+          }
+          ?>   
+        </h3>
 			</div>
 			</div>
 	</li>
@@ -64,5 +73,5 @@
     	<i class="file text outline icon"></i>
   		Програма
     </a>
+     <?php } ?>
 </div>
- <?php } ?>

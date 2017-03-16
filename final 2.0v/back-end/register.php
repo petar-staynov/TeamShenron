@@ -54,10 +54,10 @@ if (isset($_POST['submit'])) {
         $sql = 'SELECT * FROM users WHERE username = "'.$username.'"';
         $query = mysqli_query($db, $sql);
         $error = "Регистрацията бе успешна. Моля изчакайте одобрение.";
-//        $_SESSION['logged'] = true;
-//        $_SESSION['user_info'] = mysqli_fetch_assoc($query);
+       $_SESSION['logged'] = true;
+       $_SESSION['user_info'] = mysqli_fetch_assoc($query);
 
-        header("Location: ../login-form.php?error=$error");
+        header("Location: ../index.php");
         exit;
     }
 }

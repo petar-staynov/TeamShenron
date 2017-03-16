@@ -54,18 +54,28 @@
 
             $('#schools').selectmenu("refresh");
         }
-    </script>
 
-    <!-- Message close -->
-    <script>
-        $('.message .close')
-            .on('click', function () {
-                $(this)
-                    .closest('.message')
-                    .transition('fade')
-                ;
-            })
-        ;
+        function showClasses(school) {
+             if (school == "") {
+                document.getElementById("class-numbers").innerHTML = "";
+                return;
+            } else { 
+                if (window.XMLHttpRequest) {
+                    // code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp = new XMLHttpRequest();
+                } else {
+                    // code for IE6, IE5
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("class-numbers").innerHTML = this.responseText;
+                    }
+                };
+                xmlhttp.open("GET","back-end/show-class-numbers.php?id="+school,true);
+                xmlhttp.send();
+            }
+        }
     </script>
 
 </head>
@@ -89,6 +99,18 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Message close -->
+                <script>
+                    $('.message .close')
+                        .on('click', function () {
+                            $(this)
+                                .closest('.message')
+                                .transition('fade')
+                            ;
+                        })
+                    ;
+                </script>
             <?php } ?>
             <h1 class="front-title">УЧИЛИЩЕН ПРОФИЛ</h1>
             <h2 class="second-front-title"></h2>
@@ -177,7 +199,7 @@
         </div>
         <div class="field">
             <label>Училище</label>
-            <select id="schools" class="ui dropdown" required name="school">
+            <select id="schools" class="ui dropdown" required name="school" onchange="showClasses(this.value)">
                 <option selected>Изберете училище</option>
                 <?php
                 $sql = 'SELECT * FROM schools';
@@ -192,27 +214,8 @@
 
         <div class="field" style="display: none;" id="class">
             <label>Паралелка: </label>
-            <select class="ui dropdown" name="class-number">
+            <select class="ui dropdown" name="class-number" id="class-numbers">
                 <option selected>Клас</option>
-                <option value="1">1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-                <option>7</option>
-                <option>8</option>
-                <option>9</option>
-                <option>10</option>
-                <option>11</option>
-                <option>12</option>
-            </select>
-            <select class="ui dropdown" name="class-letter">
-                <option selected>Буква</option>
-                <option>А</option>
-                <option>Б</option>
-                <option>В</option>
-                <option>Г</option>
             </select>
         </div>
 

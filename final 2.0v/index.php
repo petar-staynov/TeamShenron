@@ -3,9 +3,9 @@ include_once 'back-end/is-logged.php';
 include_once 'back-end/functions.php';
 include_once 'back-end/db.php';
 
-//if (!$_SESSION['user_info']['approved']) {
-//    header("Location: not-approved.php");
-//}
+if (!$_SESSION['user_info']['approved']) {
+   header("Location: not-approved.php");
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,9 +25,8 @@ include_once 'includes/sidebar.php';
     ?>
     <div class="ui container" style="margin-top: 100px;">
         <?php
-        //    			$role = getRole($db, $_SESSION['user_info']['role_id']);
-        //    			include_once 'includes/profile.php' . $role['role_index'];
-        include_once 'includes/profile.php';
+   			$role = getRole($db, $_SESSION['user_info']['role_id']);
+   			include_once 'includes/' . $role['role_index'];
         ?>
     </div>
 </div>

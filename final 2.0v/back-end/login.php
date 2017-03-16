@@ -28,9 +28,11 @@ if (isset($_POST['username']) && !empty($_POST['username']) && isset($_POST['pas
 
     $approved = $row['approved'];
 
-    if (!$approved){
-        //TODO da vodi kum stranica koqto mu kazva che ne e odobren oshte
+    if ($approved == 0) {
+        header("Location: ../not-approved.php");
+        exit;
     }
+
     if (password_verify($password, $hashedPass)) {
         $_SESSION['user_info'] = $row;
         $_SESSION['logged'] = true;

@@ -14,7 +14,6 @@ $schoolId = $_SESSION['user_info']['school_id'];
 $classId = $_SESSION['user_info']['class_id'];
 $schoolName = getSchoolName($db, $schoolId);
 $classInfo = getClassInfo($db, $classId);
-
 function getSchoolName($db, $schoolId)
 {
     $sql = "SELECT name FROM schools WHERE schools.id = '$schoolId'";
@@ -35,7 +34,13 @@ function getSchedule($db, $classId)
 {
     $sql = "SELECT schedule FROM schedules WHERE class_id = '$classId'";
     $query = mysqli_query($db, $sql);
-    $scheduleInfo = mysqli_fetch_row($query);
+    $scheduleInfo = mysqli_fetch_array($query);
+    if ($scheduleInfo == NULL){
+        $schedule = " , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , ,";
+        $sql = "INSERT INTO schedules (class_id, schedule) VALUES ('$classId', '$schedule')";
+        mysqli_query($db, $sql);
+        header("Location: schedule.php");
+    }
     $scheduleInfo = $scheduleInfo[0];
     $scheduleInfo = explode(',', $scheduleInfo);
     return $scheduleInfo;
@@ -48,7 +53,7 @@ $classLetter = $classInfo['class_letter'];
 $days = ['Понеделник', 'Вторник', 'Сряда', 'Четвъртък', 'Петък', 'Събота', 'Неделя'];
 $daysEn = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 
-if (isset($_POST['submit-schedule']) && $userLevel < 3 && $approved = 1) {
+if (isset($_POST['submit-schedule']) && $userLevel > 1 && $approved = 1) {
     $scheduleNew =
         [$_POST['mon-0'], $_POST['tue-0'], $_POST['wed-0'], $_POST['thu-0'], $_POST['fri-0'], $_POST['sat-0'], $_POST['sun-0'],
             $_POST['mon-1'], $_POST['tue-1'], $_POST['wed-1'], $_POST['thu-1'], $_POST['fri-1'], $_POST['sat-1'], $_POST['sun-1'],
@@ -60,7 +65,7 @@ if (isset($_POST['submit-schedule']) && $userLevel < 3 && $approved = 1) {
             $_POST['mon-7'], $_POST['tue-7'], $_POST['wed-7'], $_POST['thu-7'], $_POST['fri-7'], $_POST['sat-7'], $_POST['sun-7']];
     echo '<br>';
     $scheduleNew = implode(',', $scheduleNew);
-    $sql = "UPDATE schedules SET schedule = '$scheduleNew'";
+    $sql = "UPDATE schedules SET schedule = '$scheduleNew' WHERE schedules.class_id = $classId ";
     $query = mysqli_query($db, $sql);
     header("Location: schedule.php");
 }

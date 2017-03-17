@@ -1,5 +1,9 @@
+<?php
+if (!isset($_SESSION['logged'])) {
+    header("Location: login-form.php");
+}
+?>
 <header>
-
     <div class="ui menu">
         <div class="right menu">
             <div class="ui dropdown item">

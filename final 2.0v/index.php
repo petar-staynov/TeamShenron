@@ -3,12 +3,9 @@ include_once 'back-end/is-logged.php';
 include_once 'back-end/functions.php';
 include_once 'back-end/db.php';
 
-//Когато се регистрираш и после те одобрят не можеш да се логнеш,
-//защото в сесията все още е запазено че не си одобрен,
-// въпреки че в базата си и винаги те препраща към тази страница
-//if (!$_SESSION['user_info']['approved']) {
-//   header("Location: not-approved.php");
-//}
+if (!$_SESSION['user_info']['approved']) {
+   header("Location: not-approved.php");
+}
 ?>
 <!DOCTYPE html>
 <html>

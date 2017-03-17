@@ -14,16 +14,13 @@
 			</div>
 		</div>
 		<div class="twelve wide column">
-			<form class="ui form">
+			<form class="ui form" action="../back-end/editUserInfo.php" method="post">
 			  <div class="three fields">
 			  	<div class="field">
 				    <label>Име</label>
 				    <input type="text" name="first-name" placeholder="Име">
 			  	</div>
-			  	<div class="field">
-			  		<label>Презиме</label>
-			  		<input type="text" name="second-name" placeholder="Презиме">
-			  	</div>
+
 			  	<div class="field">
 				    <label>Фамилия</label>
 				    <input type="text" name="last-name" placeholder="Фамилия">
@@ -34,20 +31,7 @@
 				    <label>E-mail</label>
 				    <input type="email" name="email" placeholder="primer@abv.bg">
 			  	</div>
-			  	<div class="field">
-			  		<label>Дата на раждане</label>
-			  		<input type="text" name="birth-date" placeholder="01/01/1990">
-			  	</div>
-			  </div>
-			  <div class="field">
-			    <label>За мен</label>
-			    <textarea name="description" placeholder="Кратко описание за теб"></textarea>
-			  </div>
-			  <div class="field">
-			  	<label>Снимка</label>
-			  	<input type="file" name="image">
-			  </div>
-			  <button class="ui primary button" type="submit">Запази</button>
+			  <button class="ui primary button" type="submit" name="editInfo">Запази</button>
 			</form>
 		</div>
 	</div>

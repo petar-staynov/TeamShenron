@@ -72,34 +72,47 @@ function getTeacher($db, $teacher_id)
 
 
 //SCHEDULE FUNCTIONS
-function getSchoolName($db, $schoolId)
+function getSchoolName($db, $schoolId) //returns string = schoolname
 {
-    $sql = "SELECT name FROM schools WHERE schools.id = '$schoolId'";
-    $query = mysqli_query($db, $sql);
-    $schoolInfo = mysqli_fetch_assoc($query);
-    return $schoolInfo['name'];
+    $stmt = $db->prepare("SELECT name FROM schools WHERE schools.id = ?");
+    $stmt->bind_param('i', $schoolId);
+    $stmt->execute();
+    $stmt->bind_result($schoolName);
+    $stmt->fetch();
+    $stmt->close();
+    return $schoolName;
 }
 
-function getClassInfo($db, $classId)
+function getClassInfo($db, $classId) //returns array['class_num], array['class_letter']
 {
-    $sql = "SELECT * FROM classes WHERE classes.id = '$classId'";
-    $query = mysqli_query($db, $sql);
-    $classInfo = mysqli_fetch_assoc($query);
+    $stmt = $db->prepare("SELECT class_letter, class_num FROM classes WHERE classes.id =  ?");
+    $stmt->bind_param('i', $classId);
+    $stmt->execute();
+    $stmt->bind_result($classLetter, $classNum);
+    $classInfo = [];
+    while($stmt->fetch()){
+        $classInfo['class_num'] = $classNum;
+        $classInfo['class_letter'] = $classLetter;
+    }
+    $stmt->close();
     return $classInfo;
 }
 
-function getSchedule($db, $classId)
+function getSchedule($db, $classId) //returns schedule array
 {
-    $sql = "SELECT schedule FROM schedules WHERE class_id = '$classId'";
-    $query = mysqli_query($db, $sql);
-    $scheduleInfo = mysqli_fetch_array($query);
-    if ($scheduleInfo == NULL) {
-        $schedule = " , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , ,";
-        $sql = "INSERT INTO schedules (class_id, schedule) VALUES ('$classId', '$schedule')";
-        mysqli_query($db, $sql);
-        header("Location: schedule-backend.php");
+    $stmt = $db->prepare("SELECT schedule FROM schedules WHERE class_id = ?");
+    $stmt->bind_param('i', $classId);
+    $stmt->execute();
+    $stmt->bind_result($schedule);
+    $stmt->fetch();
+    if ($schedule == NULL) {
+        $stmt = $db->prepare("INSERT INTO schedules (class_id, schedule) VALUES (?, ?)");
+
+        $schedule = ", , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , ,";
+        $stmt->bind_param('is', $classId, $schedule);
+        $stmt->execute();
     }
-    $scheduleInfo = $scheduleInfo[0];
-    $scheduleInfo = explode(',', $scheduleInfo);
-    return $scheduleInfo;
+    $schedule = explode(',', $schedule);
+    $stmt->close();
+    return $schedule;
 }

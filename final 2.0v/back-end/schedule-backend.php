@@ -17,6 +17,7 @@ $classLetter = $classInfo['class_letter'];
 $days = ['Понеделник', 'Вторник', 'Сряда', 'Четвъртък', 'Петък', 'Събота', 'Неделя'];
 $daysEn = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 
+
 if (isset($_POST['submit-schedule']) && $userLevel > 1 && $approved = 1) {
     $scheduleNew =
         [$_POST['mon-0'], $_POST['tue-0'], $_POST['wed-0'], $_POST['thu-0'], $_POST['fri-0'], $_POST['sat-0'], $_POST['sun-0'],
@@ -28,9 +29,14 @@ if (isset($_POST['submit-schedule']) && $userLevel > 1 && $approved = 1) {
             $_POST['mon-6'], $_POST['tue-6'], $_POST['wed-6'], $_POST['thu-6'], $_POST['fri-6'], $_POST['sat-6'], $_POST['sun-6'],
             $_POST['mon-7'], $_POST['tue-7'], $_POST['wed-7'], $_POST['thu-7'], $_POST['fri-7'], $_POST['sat-7'], $_POST['sun-7']];
     $scheduleNew = implode(',', $scheduleNew);
-    $sql = "UPDATE schedules SET schedule = '$scheduleNew' WHERE schedules.class_id = $classId ";
-    $query = mysqli_query($db, $sql);
+
+    //DATABASE QUERY
+    $stmt = $db->prepare("UPDATE schedules SET schedule = ? WHERE schedules.class_id = ?");
+    $stmt->bind_param("ss", $scheduleNew, $classId);
+    $stmt->execute();
+    $stmt->close();
+    $db->close();
+
     header("Location: schedule.php");
-    mysqli_close($db);
     exit;
 }

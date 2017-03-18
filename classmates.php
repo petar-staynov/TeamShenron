@@ -12,8 +12,8 @@ include_once 'includes/sidebar.php';
 include_once 'back-end/db.php';
 include_once 'back-end/classmates-backend.php';
 
-$myId = $_SESSION['user_info']['class_id'];
-$classmates = getClassmates($db, $myId);
+$myClassId = $_SESSION['user_info']['class_id'];
+$classmates = getClassmates($db, $myClassId);
 ?>
 
 <div class="pusher">

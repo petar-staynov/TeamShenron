@@ -4,9 +4,10 @@ include_once 'functions.php';
 
 function getClassmates($db, $myId)
 {
-    $stmt = $db->prepare("SELECT id, first_name, last_name, email FROM users WHERE users.class_id = ? AND users.role_id = ?");
+    $stmt = $db->prepare("SELECT id, first_name, last_name, email FROM users WHERE users.class_id = ? AND users.role_id = ? AND users.approved = ?");
     $roleId = 1;
-    $stmt->bind_param('ii', $myId, $roleId);
+    $approved = 1;
+    $stmt->bind_param('iii', $myId, $roleId, $approved);
     $stmt->execute();
     $stmt->bind_result($userId, $firstName, $lastName, $email);
     $userInfo = [];

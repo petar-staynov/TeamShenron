@@ -43,7 +43,7 @@ if (!isset($_SESSION['logged'])) {
             <div class="field">
                 <label>Училище</label>
                 <input type="hidden" name="school_id" value="<?php echo $_SESSION['user_info']['school_id']?>">
-                <input type="text" name="school" value="<?php echo htmlspecialchars(getSchool($db, $_SESSION['user_info']['school_id'])['name']); ?>">
+                <input disabled type="text" name="school" value="<?php echo htmlspecialchars(getSchool($db, $_SESSION['user_info']['school_id'])['name']); ?>">
             </div>
             <div class="field">
                 <label>Клас №</label>

@@ -54,7 +54,7 @@ function getClass($db, $class_id)
 function getClasses($db, $school_id)
 {
     $rows = [];
-    $sql = 'SELECT * FROM classes WHERE approved = 1';
+    $sql = "SELECT * FROM classes WHERE approved = 1 AND classes.school_id = '$school_id'";
     $query = mysqli_query($db, $sql);
     while ($row = mysqli_fetch_assoc($query)) {
         $rows[] = $row;

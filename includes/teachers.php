@@ -163,7 +163,7 @@
 		<h2 class="text-center">Класове</h2>
 		<div class="ui divider"></div>
 		<?php 
-			$rows = getClasses($db, $role['id']);
+			$rows = getClasses($db, $_SESSION['user_info']['school_id']);
 			
 			
 			if (count($rows)) {

@@ -58,7 +58,8 @@ if (!isset($_SESSION['logged'])) {
                 <select name="teacher_id">
                     <option selected>Изберете Преподавател</option>
                     <?php
-                    $sql = 'SELECT * FROM users WHERE role_id=2 AND approved = 1';
+                    $schoolId = $_SESSION['user_info']['school_id'];
+                    $sql = "SELECT * FROM users WHERE role_id=2 AND approved = 1 AND users.school_id = '$schoolId' ";
                     $query = mysqli_query($db, $sql);
 
                     while ($row = mysqli_fetch_assoc($query)) { ?>

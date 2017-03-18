@@ -111,7 +111,36 @@
                         })
                     ;
                 </script>
-            <?php } ?>
+            <?php }
+                elseif (isset($_GET['msg'])) { ?>
+                    <div class="ui centered grid">
+                        <div class="four wide column">
+                            <div class="ui green message">
+                                <i class="close icon"></i>
+                                <strong>
+                                    <?php
+                                    $message = $_GET['msg'];
+                                    echo "$message";
+                                    ?>
+                                </strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Message close -->
+                    <script>
+                        $('.message .close')
+                            .on('click', function () {
+                                $(this)
+                                    .closest('.message')
+                                    .transition('fade')
+                                ;
+                            })
+                        ;
+                    </script>
+        <?php    }
+
+            ?>
             <h1 class="front-title">УЧИЛИЩЕН ПРОФИЛ</h1>
             <h2 class="second-front-title"></h2>
             <div class="ui one column stackable center aligned page grid">
@@ -214,7 +243,7 @@
 
         <div class="field" style="display: none;" id="class">
             <label>Паралелка: </label>
-            <select class="ui dropdown" name="class-number" id="class-numbers">
+            <select class="ui dropdown" name="class" id="class-numbers">
                 <option selected>Клас</option>
             </select>
         </div>

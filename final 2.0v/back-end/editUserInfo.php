@@ -18,7 +18,7 @@ if(isset($_POST['editInfo'])){
     if (!$result){
         echo "Try again.";
     } else {
-        header("Location: http://localhost/shenron/success.php");
+        header("Location: ../index.php?success=1");
     }
 
 

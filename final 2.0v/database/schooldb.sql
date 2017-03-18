@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 16, 2017 at 10:03 AM
--- Server version: 10.1.16-MariaDB
--- PHP Version: 5.6.24
+-- Generation Time: 18 март 2017 в 02:07
+-- Версия на сървъра: 10.1.19-MariaDB
+-- PHP Version: 7.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -23,30 +23,33 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `classes`
+-- Структура на таблица `classes`
 --
 
 CREATE TABLE `classes` (
   `id` int(11) NOT NULL,
   `class_num` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `class_letter` tinytext CHARACTER SET latin1,
+  `class_letter` tinytext CHARACTER SET utf8,
   `school_id` int(11) NOT NULL,
   `teacher_id` int(11) NOT NULL,
   `approved` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
 
 --
--- Dumping data for table `classes`
+-- Схема на данните от таблица `classes`
 --
 
 INSERT INTO `classes` (`id`, `class_num`, `class_letter`, `school_id`, `teacher_id`, `approved`) VALUES
-(39, '4', 'A', 30, 2, 0),
-(41, '5', 'C', 30, 3, 0);
+(39, '4', 'A', 30, 2, 2),
+(41, '5', 'C', 30, 3, 2),
+(43, '6', 'А', 0, 31, 2),
+(44, '11', 'А', 0, 31, 1),
+(45, '8', 'А', 117, 31, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `grades`
+-- Структура на таблица `grades`
 --
 
 CREATE TABLE `grades` (
@@ -58,7 +61,7 @@ CREATE TABLE `grades` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `roles`
+-- Структура на таблица `roles`
 --
 
 CREATE TABLE `roles` (
@@ -68,7 +71,7 @@ CREATE TABLE `roles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
 
 --
--- Dumping data for table `roles`
+-- Схема на данните от таблица `roles`
 --
 
 INSERT INTO `roles` (`id`, `name`, `role_index`) VALUES
@@ -80,7 +83,7 @@ INSERT INTO `roles` (`id`, `name`, `role_index`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `schedules`
+-- Структура на таблица `schedules`
 --
 
 CREATE TABLE `schedules` (
@@ -90,16 +93,18 @@ CREATE TABLE `schedules` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
 
 --
--- Dumping data for table `schedules`
+-- Схема на данните от таблица `schedules`
 --
 
 INSERT INTO `schedules` (`id`, `class_id`, `schedule`) VALUES
-(1, 1, '[[''пон-1'', ''пон-2'', ''пон-3'', '''', '''', '''', '''', ''''],\r\n    [''вт-1'', ''вт-2'', ''вт-3'', '''', '''', '''', '''', ''''],\r\n    [''ср-1'', ''ср-2'', ''ср-3'', '''', '''', '''', '''', ''''],\r\n    [''чт-1'', ''чт-2'', ''чт-3'', '''', '''', '''', '''', ''''],\r\n    [''пт-1'', ''пт-2'', ''пт-3'', '''', '''', '''', '''', ''''],\r\n    [''сб-1'', ''сб-2'', ''сб-3'', '''', '''', '''', '''', ''''],\r\n    [''нд-1'', ''нд-2'', ''нд-3'', '''', '''', '''', '''', '''']];');
+(1, 1, '[[''пон-1'', ''пон-2'', ''пон-3'', '''', '''', '''', '''', ''''],\r\n    [''вт-1'', ''вт-2'', ''вт-3'', '''', '''', '''', '''', ''''],\r\n    [''ср-1'', ''ср-2'', ''ср-3'', '''', '''', '''', '''', ''''],\r\n    [''чт-1'', ''чт-2'', ''чт-3'', '''', '''', '''', '''', ''''],\r\n    [''пт-1'', ''пт-2'', ''пт-3'', '''', '''', '''', '''', ''''],\r\n    [''сб-1'', ''сб-2'', ''сб-3'', '''', '''', '''', '''', ''''],\r\n    [''нд-1'', ''нд-2'', ''нд-3'', '''', '''', '''', '''', '''']];'),
+(2, 42, ', , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , ,'),
+(3, 45, ', , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , ,');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `schools`
+-- Структура на таблица `schools`
 --
 
 CREATE TABLE `schools` (
@@ -112,7 +117,7 @@ CREATE TABLE `schools` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci ROW_FORMAT=COMPACT;
 
 --
--- Dumping data for table `schools`
+-- Схема на данните от таблица `schools`
 --
 
 INSERT INTO `schools` (`id`, `name`, `type`, `city`, `region`, `finance`) VALUES
@@ -2714,7 +2719,7 @@ INSERT INTO `schools` (`id`, `name`, `type`, `city`, `region`, `finance`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Структура на таблица `users`
 --
 
 CREATE TABLE `users` (
@@ -2732,14 +2737,19 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
 
 --
--- Dumping data for table `users`
+-- Схема на данните от таблица `users`
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `approved`, `school_id`, `class_id`, `role_id`, `registered_at`) VALUES
 (1, 'Алекс', 'Ганев', 'ganevaleks', '$2y$10$6.KE97Wk34wvgVRz9U0CMeKnO9J8D4NDN0A7NRDPAqU.lgTI55gUy', 'ganevaleks@gmail.com', 1, 30, 2, 3, '2017-03-15 22:11:59'),
 (2, 'Учител 1', 'Учител 1', 'teacher', '$2y$10$HsrvhzM1Px3mhAX/qhfJHel/91D5V1HPM376STtlBDIEUQOTEhYqm', 'test@test', 0, 88, 39, 2, '2017-03-15 22:14:00'),
 (3, 'Учител 2', 'Учител 2', 'teacher2', '$2y$10$HsrvhzM1Px3mhAX/qhfJHel/91D5V1HPM376STtlBDIEUQOTEhYqm', 'test@test', 0, 88, 41, 2, '2017-03-15 22:14:00'),
-(27, 'Учител 3', 'Учител 3', 'teacher3', '$2y$10$HsrvhzM1Px3mhAX/qhfJHel/91D5V1HPM376STtlBDIEUQOTEhYqm', 'test@test', 0, 88, 37, 2, '2017-03-15 22:14:00');
+(27, 'Учител 3', 'Учител 3', 'teacher3', '$2y$10$HsrvhzM1Px3mhAX/qhfJHel/91D5V1HPM376STtlBDIEUQOTEhYqm', 'test@test', 1, 88, 37, 2, '2017-03-15 22:14:00'),
+(29, 'Тест', 'Тестов', 'test', '$2y$10$aoNef6VHytG/tT.vqLpEPOtmR0X51pH5HDAfYixrGYjSQP1Dj4vBa', 'test@abv.bg', 1, 88, 0, 3, '2017-03-16 15:17:54'),
+(30, 'Ангел', 'Миладинов', 'angelcho', '$2y$10$CqbZ1i8dDFEGikGsZG5vnOvx5bu9dA3Zg9lp5/6YY9p6ikfcKSh8C', 'miladinov_1997@abv.bg', 1, 3233, 0, 4, '2017-03-16 15:20:29'),
+(31, 'Daskal', 'Daskalov', 'daskala', '$2y$10$pak0/NNt5ePpW7G394ZWyuGtPiVUR5WP9cXdZHqWYppym22hWIADC', 'daskal@abv.bg', 1, 88, 45, 2, '2017-03-17 23:36:43'),
+(32, 'Direktor', 'Direktroski', 'direktora', '$2y$10$dOqjIMIflrIHRyV1n1HmEuGmxvlr4AlgFxTa05B86n9eTBBh9jIWC', 'direktor@abv.bg', 1, 117, 0, 3, '2017-03-17 23:42:50'),
+(33, 'Edited2', 'Миладинов', 'uchenik', '$2y$10$As78g3OAULHNYHYysyWYnOLbbuG0D5CslDI/wl/Ur4iPzVNfmrgVq', 'edited@abv.bg2', 1, 117, 45, 1, '2017-03-18 02:46:23');
 
 --
 -- Indexes for dumped tables
@@ -2791,7 +2801,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `classes`
 --
 ALTER TABLE `classes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 --
 -- AUTO_INCREMENT for table `grades`
 --
@@ -2806,7 +2816,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `schedules`
 --
 ALTER TABLE `schedules`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `schools`
 --
@@ -2816,7 +2826,7 @@ ALTER TABLE `schools`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

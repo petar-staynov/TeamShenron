@@ -40,10 +40,11 @@ if (isset($_POST['submit'])) {
     }
 
     if ($roles[$type] == 'Ученик') {
-        $classNumber = mysqli_real_escape_string($db, $_POST['class-number']);
-        $classLetter = mysqli_real_escape_string($db, $_POST['class-letter']);
+        $class = $_POST['class'];
 
         //Trqbva da se napravqt klasovete
+        $sql = 'INSERT INTO users (first_name, last_name, username, password, email, approved, school_id,
+        class_id, role_id, registered_at) VALUES ("'.$firstname.'", "'.$lastname.'", "'.$username.'", "'.$password.'", "'.$email.'", 0, "'.$school.'", "'.$class.'", "'.$type.'", NOW())';
     }
 
     else {
@@ -53,11 +54,9 @@ if (isset($_POST['submit'])) {
     if (mysqli_query($db, $sql)) {
         $sql = 'SELECT * FROM users WHERE username = "'.$username.'"';
         $query = mysqli_query($db, $sql);
-        $error = "Регистрацията бе успешна. Моля изчакайте одобрение.";
-//       $_SESSION['logged'] = true;
-//       $_SESSION['user_info'] = mysqli_fetch_assoc($query);
+        $message = "Регистрацията бе успешна. Моля изчакайте одобрение.";
 
-        header("Location: ../login-form.php?error=$error");
+        header("Location: ../login-form.php?msg=$message");
         exit;
     }
 }

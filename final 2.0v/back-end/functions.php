@@ -6,7 +6,7 @@ function getRole($db, $role_id)
     return mysqli_fetch_assoc($query);
 }
 
-function getRegistrations($db, $role_id)
+function getRegistrations($db, $role_id, $class_id = null)
 {
     $rows = array();
     switch ($role_id) {
@@ -27,7 +27,7 @@ function getRegistrations($db, $role_id)
             return $rows;
             break;
         case 2:
-            $sql = 'SELECT * FROM users WHERE role_id = 1 AND approved = 0';
+            $sql = 'SELECT * FROM users WHERE role_id = 1 AND approved = 0 AND class_id = "'.$class_id.'"';
             $query = mysqli_query($db, $sql);
             while ($row = mysqli_fetch_assoc($query)) {
                 $rows[] = $row;
@@ -35,7 +35,6 @@ function getRegistrations($db, $role_id)
             return $rows;
             break;
     }
-
 }
 
 function getSchool($db, $school_id)
@@ -55,7 +54,7 @@ function getClass($db, $class_id)
 function getClasses($db, $school_id)
 {
     $rows = [];
-    $sql = 'SELECT * FROM classes WHERE approved = 0';
+    $sql = 'SELECT * FROM classes WHERE approved = 1';
     $query = mysqli_query($db, $sql);
     while ($row = mysqli_fetch_assoc($query)) {
         $rows[] = $row;

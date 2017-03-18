@@ -174,7 +174,6 @@
 					<th>Клас</th>
 					<th>Буква</th>
 					<th>Учител</th>
-					<th>Одобри</th>
 					<th>Отхвърли</th>
 				</tr>
 			</thead>
@@ -187,11 +186,6 @@
 					<td><?= htmlspecialchars($row['class_num']) ?></td>
 					<td><?= htmlspecialchars($row['class_letter']) ?></td>
 					<td><?= htmlspecialchars($teacher['first_name']) ?> <?= htmlspecialchars($teacher['last_name']) ?></td>
-					<td>
-						<a href="back-end/approve-class.php?id=<?= $row['id'] ?>">
-							<i class="add user icon" style="font-size: 1.5em;"></i>
-						</a>
-					</td>
 					<td>
 						<a href="back-end/decline-class.php?id=<?= $row['id'] ?>">
 							<i class="remove user icon" style="font-size: 1.5em;"></i>

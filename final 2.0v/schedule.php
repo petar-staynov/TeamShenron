@@ -13,7 +13,7 @@ include_once "back-end/schedule-backend.php";
         } ?>
         <table>
             <tr>
-                <th class="main-th" colspan="8"><?php echo "$schoolName $class$classLetter" ?></th>
+                <th class="main-th" colspan="8"><?php echo "$schoolName $class $classLetter" ?></th>
             </tr>
             <?php echo "<th class='schedule-day-num'> </th>"; ?>
             <?php for ($day = 0; $day < count($days); $day++) { //Days of week heading row loop

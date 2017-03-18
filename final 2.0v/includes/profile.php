@@ -18,18 +18,18 @@
 			  <div class="three fields">
 			  	<div class="field">
 				    <label>Име</label>
-				    <input type="text" name="first-name" placeholder="Име">
+				    <input type="text" name="first-name" value="<?php echo $_SESSION['user_info']['first_name']?>">
 			  	</div>
 
 			  	<div class="field">
 				    <label>Фамилия</label>
-				    <input type="text" name="last-name" placeholder="Фамилия">
+				    <input type="text" name="last-name" value="<?php echo $_SESSION['user_info']['last_name']?>">
 			  	</div>
 			  </div>
 			  <div class="two fields">
 			  	<div class="field">
 				    <label>E-mail</label>
-				    <input type="email" name="email" placeholder="primer@abv.bg">
+				    <input type="email" name="email" value="<?php echo $_SESSION['user_info']['email']?>">
 			  	</div>
 			  <button class="ui primary button" type="submit" name="editInfo">Запази</button>
 			</form>

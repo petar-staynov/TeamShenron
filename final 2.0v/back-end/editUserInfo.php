@@ -18,6 +18,9 @@ if(isset($_POST['editInfo'])){
     if (!$result){
         echo "Try again.";
     } else {
+        $_SESSION['user_info']['first_name'] = $firstName;
+        $_SESSION['user_info']['last_name'] = $lastName;
+        $_SESSION['user_info']['email'] = $email;
         header("Location: ../index.php?success=1");
     }
 
